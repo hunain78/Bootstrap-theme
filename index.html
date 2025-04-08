@@ -914,6 +914,15 @@
     </div>
   </footer>
   </div>
+
+<script type="text/javascript">
+  // sticky nav-bar
+  window.addEventListener("scroll", () => {
+    let header = document.querySelector(".header");
+    header.classList.toggle("sticky", window.scrollY > 0)
+  })
+</script>
+
 </body>
 
 </html>
