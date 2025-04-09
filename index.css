@@ -20,23 +20,11 @@ body {
     z-index: 997;
 }
 /* header sticky color changing */
-/* .header.sticky{
-    padding: 0;
-    background-color: white;
-}
-
-.header.sticky::after{
-    height: 100%;
-}
-
-.header.sticky.logo.sitename,
-.header.sticky ul li a{
-    color: #060606;
-} */
 
 .header.sticky {
     padding: 0;
     background-color: white;
+    height: 100%;
 }
 
 .header.sticky::after {

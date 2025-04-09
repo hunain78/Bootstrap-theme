@@ -194,7 +194,7 @@
         <!--1 no item-->
         <div class="col-lg-3 col-mg-6">
           <div class="stats-item text-center w-100 h-100">
-            <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="0"
+            <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="0" id="counter"
               class="purecounter">232</span>
             <p>Clients</p>
           </div>
@@ -202,25 +202,25 @@
         <!--2 no item -->
         <div class="col-lg-3 col-mg-6">
           <div class="stats-item text-center w-100 h-100">
-            <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="0"
+            <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="0" id="counter"
               class="purecounter">521</span>
-            <p>Clients</p>
+            <p>Projects</p>
           </div>
         </div>
         <!-- 3 no item  -->
         <div class="col-lg-3 col-mg-6">
           <div class="stats-item text-center w-100 h-100">
-            <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="0"
+            <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="0.5" id="counter"
               class="purecounter">1453</span>
-            <p>Clients</p>
+            <p>Hours Of Support</p>
           </div>
           <!-- 4 no item -->
         </div>
         <div class="col-lg-3 col-mg-6">
           <div class="stats-item text-center w-100 h-100">
-            <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="0"
+            <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="0" id="counter"
               class="purecounter">32</span>
-            <p>Clients</p>
+            <p>Workers</p>
           </div>
         </div>
       </div>
@@ -921,7 +921,54 @@
     let header = document.querySelector(".header");
     header.classList.toggle("sticky", window.scrollY > 0)
   })
+
+  // stats-item counter 
+
+  // document.addEventListener('DOMContentLoaded', function () {
+  //   let counters = document.querySelectorAll('.purecounter');
+
+  //   counters.forEach(counter => {
+  //     let end = parseInt(counter.getAttribute('data-purecounter-end'));
+  //     let start = parseInt(counter.getAttribute('data-purecounter-start')) || 0;
+  //     let current = start;
+
+  //     let interval = setInterval(function () {
+  //       current++;
+  //       counter.textContent = current;
+
+  //       if (current >= end) {
+  //         clearInterval(interval);
+  //       }
+  //     }, );
+  //   });
+  // })
+
+
+  document.addEventListener('DOMContentLoaded', function () {
+    let counters = document.querySelectorAll('.purecounter');
+    let totalDuration = 5000;  // Total time for all counters to complete (in milliseconds)
+    
+    counters.forEach(counter => {
+      let end = parseInt(counter.getAttribute('data-purecounter-end'));
+      let start = parseInt(counter.getAttribute('data-purecounter-start')) || 0;
+      let current = start;
+      let duration = totalDuration / end;  // Calculate the time per increment
+
+      let interval = setInterval(function () {
+        current++;
+        counter.textContent = current;
+
+        if (current >= end) {
+          clearInterval(interval);
+        }
+      }, duration)  ;  // Duration for each interval (total duration divided by the end value)
+    });
+});
+
 </script>
+
+
+
 
 </body>
 
