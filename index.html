@@ -923,36 +923,15 @@
   })
 
   // stats-item counter 
-
-  // document.addEventListener('DOMContentLoaded', function () {
-  //   let counters = document.querySelectorAll('.purecounter');
-
-  //   counters.forEach(counter => {
-  //     let end = parseInt(counter.getAttribute('data-purecounter-end'));
-  //     let start = parseInt(counter.getAttribute('data-purecounter-start')) || 0;
-  //     let current = start;
-
-  //     let interval = setInterval(function () {
-  //       current++;
-  //       counter.textContent = current;
-
-  //       if (current >= end) {
-  //         clearInterval(interval);
-  //       }
-  //     }, );
-  //   });
-  // })
-
-
-  document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
     let counters = document.querySelectorAll('.purecounter');
-    let totalDuration = 5000;  // Total time for all counters to complete (in milliseconds)
-    
-    counters.forEach(counter => {
+    let totalDuration = 5000; 
+
+    function animateCounter(counter) {
       let end = parseInt(counter.getAttribute('data-purecounter-end'));
       let start = parseInt(counter.getAttribute('data-purecounter-start')) || 0;
       let current = start;
-      let duration = totalDuration / end;  // Calculate the time per increment
+      let duration = totalDuration / end; 
 
       let interval = setInterval(function () {
         current++;
@@ -961,7 +940,22 @@
         if (current >= end) {
           clearInterval(interval);
         }
-      }, duration)  ;  // Duration for each interval (total duration divided by the end value)
+      }, duration);  
+    }
+
+    let observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          
+          animateCounter(entry.target);
+          observer.unobserve(entry.target); 
+        }
+      });
+    }, { threshold: 0.5 }); 
+
+
+    counters.forEach(counter => {
+      observer.observe(counter);
     });
 });
 
